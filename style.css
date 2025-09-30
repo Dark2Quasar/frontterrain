@@ -11,12 +11,11 @@ img {
     display: block;
     margin: 20px auto 20px auto;
     float: center;
-    background-color: whitesmoke;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande' ;
     text-align: center;
 }
 body {
-    background-color: rgb(236, 228, 239);
+    background-color: rgb(243, 242, 243);
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande' ;
     text-align: center;
 }
@@ -31,4 +30,4 @@ body {
     margin: 4px 2px;
     cursor: justify;
     border-radius: 20px;
-}    
+}
