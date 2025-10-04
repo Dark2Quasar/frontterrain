@@ -1,3 +1,26 @@
+/* Equal size for social media images */
+.social-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+/* Container for side-by-side images */
+.img-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+/* Style for images in the row */
+.img-row img {
+    max-width: 150px;
+    height: 80px;
+    display: block;
+    margin: 0;
+}
 img {
     max-width: 300px;
     height: 100px;
@@ -15,7 +38,7 @@ img {
     text-align: center;
 }
 body {
-    background-color: white;
+    background-color: rgb(236, 228, 239);
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande' ;
     text-align: center;
 }
@@ -30,4 +53,4 @@ body {
     margin: 4px 2px;
     cursor: justify;
     border-radius: 20px;
-}
+}    
