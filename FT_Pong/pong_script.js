@@ -146,34 +146,30 @@ canvas.addEventListener('mousemove', function (e) {
 });
 
 // Touch controls for mobile (swipe up/down on left half of canvas)
-let lastTouchY = null;
+let isTouching = false;
 canvas.addEventListener('touchstart', function (e) {
   if (e.touches.length === 1) {
     const rect = canvas.getBoundingClientRect();
     const touch = e.touches[0];
     const x = touch.clientX - rect.left;
     if (x < canvas.width / 2) {
-      lastTouchY = touch.clientY - rect.top;
+      isTouching = true;
+      playerY = touch.clientY - rect.top - paddleHeight / 2;
+      playerY = Math.max(0, Math.min(canvas.height - paddleHeight, playerY));
     }
   }
 });
 canvas.addEventListener('touchmove', function (e) {
-  if (e.touches.length === 1 && lastTouchY !== null) {
+  if (isTouching && e.touches.length === 1) {
     const rect = canvas.getBoundingClientRect();
     const touch = e.touches[0];
-    const x = touch.clientX - rect.left;
-    if (x < canvas.width / 2) {
-      const currentY = touch.clientY - rect.top;
-      const deltaY = currentY - lastTouchY;
-      playerY += deltaY;
-      // Clamp paddle
-      playerY = Math.max(0, Math.min(canvas.height - paddleHeight, playerY));
-      lastTouchY = currentY;
-    }
+    playerY = touch.clientY - rect.top - paddleHeight / 2;
+    playerY = Math.max(0, Math.min(canvas.height - paddleHeight, playerY));
+    e.preventDefault();
   }
 });
 canvas.addEventListener('touchend', function (e) {
-  lastTouchY = null;
+  isTouching = false;
 });
 
 // Start game
