@@ -16,6 +16,10 @@ let ballY = canvas.height / 2;
 let ballSpeedX = 5 * (Math.random() > 0.5 ? 1 : -1);
 let ballSpeedY = 3 * (Math.random() > 0.5 ? 1 : -1);
 
+// Scoring
+let playerScore = 0;
+let aiScore = 0;
+
 function drawRect(x, y, w, h, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, w, h);
@@ -62,6 +66,12 @@ function draw() {
 
   // Ball
   drawCircle(ballX, ballY, ballRadius, '#fff');
+
+  // Scores
+  ctx.font = '40px Arial';
+  ctx.fillStyle = '#fff';
+  ctx.fillText(playerScore, canvas.width / 4, 50);
+  ctx.fillText(aiScore, (canvas.width * 3) / 4, 50);
 }
 
 function update() {
@@ -100,14 +110,18 @@ function update() {
     ballSpeedY += collidePoint * 0.1;
   }
 
-  // Left and right wall (score or reset)
-  if (ballX - ballRadius < 0 || ballX + ballRadius > canvas.width) {
-    resetBall();
-  }
+    // Left and right wall (score or reset)
+    if (ballX - ballRadius < 0) {
+      aiScore++;
+      resetBall();
+    } else if (ballX + ballRadius > canvas.width) {
+      playerScore++;
+      resetBall();
+    }
 
   // AI paddle movement (simple: follow the ball)
   let aiCenter = aiY + paddleHeight / 2;
-  if (aiCenter < ballY - 20) {
+  if (aiCenter < ballY - 20) {a
     aiY += 5;
   } else if (aiCenter > ballY + 20) {
     aiY -= 5;
@@ -129,6 +143,37 @@ canvas.addEventListener('mousemove', function (e) {
   playerY = mouseY - paddleHeight / 2;
   // Clamp paddle
   playerY = Math.max(0, Math.min(canvas.height - paddleHeight, playerY));
+});
+
+// Touch controls for mobile (swipe up/down on left half of canvas)
+let lastTouchY = null;
+canvas.addEventListener('touchstart', function (e) {
+  if (e.touches.length === 1) {
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    if (x < canvas.width / 2) {
+      lastTouchY = touch.clientY - rect.top;
+    }
+  }
+});
+canvas.addEventListener('touchmove', function (e) {
+  if (e.touches.length === 1 && lastTouchY !== null) {
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    if (x < canvas.width / 2) {
+      const currentY = touch.clientY - rect.top;
+      const deltaY = currentY - lastTouchY;
+      playerY += deltaY;
+      // Clamp paddle
+      playerY = Math.max(0, Math.min(canvas.height - paddleHeight, playerY));
+      lastTouchY = currentY;
+    }
+  }
+});
+canvas.addEventListener('touchend', function (e) {
+  lastTouchY = null;
 });
 
 // Start game
