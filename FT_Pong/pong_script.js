@@ -121,7 +121,7 @@ function update() {
 
   // AI paddle movement (simple: follow the ball)
   let aiCenter = aiY + paddleHeight / 2;
-  if (aiCenter < ballY - 20) {a
+  if (aiCenter < ballY - 20) {
     aiY += 5;
   } else if (aiCenter > ballY + 20) {
     aiY -= 5;
