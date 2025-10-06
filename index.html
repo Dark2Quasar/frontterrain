@@ -6,8 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Front Terrain</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="Icons/Front Terrain (2).png">
+    <link rel="icon" type="image/png" href="PhotoRoom-20250927_125724.png">
     <script src="Script.js" defer></script>
+    <script>
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "firebase/app";
+        import { getAnalytics } from "firebase/analytics";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyCMVNDgR8EejfXofUy87L7hsKxi3E_C3lg",
+            authDomain: "frontterrain.firebaseapp.com",
+            projectId: "frontterrain",
+            storageBucket: "frontterrain.firebasestorage.app",
+            messagingSenderId: "443977559241",
+            appId: "1:443977559241:web:14cb77bdfe199542b47118",
+            measurementId: "G-L51H90K25Y"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
+
+    <!-- Removed duplicate firebaseConfig declaration and initialization to fix redeclaration error -->
+
 </head>
 
 <body align="center" link="purple" font-family="Arial">
@@ -22,20 +52,36 @@
             </a>
             we need to verify you first, Kindly enter the credentials below.
         </h2>
-        <form style="display:inline-block; text-align:center;">
-            First Name: <br><input type="text" name="firstname" placeholder="Enter your first name" required
-                class="btn">
-            <br>
-            Last Name: <br><input type="text" name="lastname" placeholder="Enter your last name" required class="btn">
-            <br>
-            Email:<br> <input type="email" name="email" placeholder="Enter your email" required class="btn">
-            <br>
-            Password: <br><input type="password" name="password" placeholder="Enter your password" required class="btn">
-            <br>
-            <button type="submit" onclick="alert('Your details have been submitted.')" value="submit" class="btn">
-                Submit
-            </button>
-        </form>
+        <input id="email" placeholder="Email" class="btn">
+<input id="password" type="password" placeholder="Password" class="btn">
+<button id="signupBtn">Sign Up</button class="btn">
+<button id="loginBtn">Login</button class="btn">
+
+<script>
+const auth = firebase.auth();
+
+document.getElementById("signupBtn").addEventListener("click", () => {
+  const email = email.value;
+  const password = password.value;
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(userCred => {
+      alert("User created!");
+      console.log(userCred.user);
+    })
+    .catch(err => alert(err.message));
+});
+
+document.getElementById("loginBtn").addEventListener("click", () => {
+  const email = email.value;
+  const password = password.value;
+  auth.signInWithEmailAndPassword(email, password)
+    .then(userCred => {
+      alert("Logged in!");
+      console.log(userCred.user);
+    })
+    .catch(err => alert(err.message));
+});
+</script>
 
     </div>
     <div>
@@ -65,12 +111,6 @@
         <a target="_blank" href="https://open.spotify.com" style="display:inline-block; margin:0 10px;">
             <img src="Icons/Spotify.png" alt="Spotify Logo" class="social-icon">
         </a>
-        <a target="_blank" href="https://www.github.com/dark2quasar" style="display:inline-block; margin:0 10px;">
-            <img src="Icons/Github.png" alt="GitHub Logo" class="social-icon">
-        </a>
-        <a target="_blank" href="https://www.linkedin.com/in/rishishandilya2240" style="display:inline-block; margin:0 10px;">
-            <img src="Icons/Linkedin.png" alt="Linkedin Logo" class="social-icon">
-        </a>
     </div>
 
 
@@ -78,23 +118,15 @@
     <h2>More bookmarks coming soon...</h2>
     <p>
         <br>
-        <hr width="50%" color="purple">
-   
-    <h2>Note: This site is not a ransomware, it's just a page for testing purposes.</h2>
-
+    <h2>
+        Note: This site is not a ransomware, it's just a page for testing purposes.
+    </h2>
     </p>
+    <hr width="100%" color="purple">
     <p align="center">
-        Let's have some fun with Front Terrain!<br>
+        Let's have some fun with Front Terrain!
         <a target="_blank" href="FT_Pong/pong_index.html" class="btn">Pong</a>
     </p>
-    <hr width="50%" color="purple">
-    <h3 align="center">
-        For further update and suggestions mail me,<br>
-        <a target="_blank" href="mailto:rishishandilya40@gmail.com" style="display:inline-block; margin:0 10px;">
-            <img src="Icons/Gmail.png" alt="Gmail Logo" class="social-icon">
-        </a>
-    </h3>
-    <hr width="50%" color="purple">
     <div>
         <a target="_blank" href="blogs.html" class="btn">Blogs</a>
         <footer align="center">
@@ -105,4 +137,3 @@
 </body>
 
 </html>
-        
