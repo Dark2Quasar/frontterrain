@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="Front terrain (2).png">
 
-  <!-- ✅ Firebase compat SDKs -->
+  <!-- Firebase compat SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 
   <script>
-    // ✅ Your Firebase config (no imports needed)
+    // Your Firebase config (no imports needed)
     const firebaseConfig = {
       apiKey: "AIzaSyCMVNDgR8EejfXofUy87L7hsKxi3E_C3lg",
       authDomain: "frontterrain.firebaseapp.com",
@@ -54,7 +54,7 @@
     const emailInput = document.getElementById("email");
     const passInput = document.getElementById("password");
 
-    // ✅ Signup button
+    // Signup button
     document.getElementById("signupBtn").addEventListener("click", async () => {
       const email = emailInput.value;
       const password = passInput.value;
@@ -79,7 +79,7 @@
       }
     });
 
-    // ✅ Login button
+    // Login button
     document.getElementById("loginBtn").addEventListener("click", async () => {
       const email = emailInput.value;
       const password = passInput.value;
