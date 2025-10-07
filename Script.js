@@ -1,1 +1,0 @@
-alert("Welcome to Front Terrain, this page isn't a ransomware or don't have any trojan, this is made for testing purpose only.");
